@@ -1,0 +1,84 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <set>
+#include <math.h>
+//#include <iomanip>
+//#include <string.h>
+//#include <map>
+//#include <queue>
+//#include <stack>
+//#include <numeric>
+//#include <unordered_map>
+//#include <unordered_set>
+#define ll long long int
+//#define ull unsigned long long int
+#define mod 1000000007
+//#define loop(n) for(int i = 1;i<=n;i++) cout<<seats[i]<<" ";
+//#define loopIN(n) for(int i = 0;i<n;i++) cin>>arr[i];
+//#define nextln cout<<"\n";
+using namespace std;
+
+//Iterative version of Fast Exponentiation
+//void solve(){
+//    ll ans = 1;
+//    ll y,x = 2;
+//    cin>>y;
+//    while(y!=0){
+//        if(y%2 == 1) ans = (ans*x)%mod;
+//        
+//        //
+//        y = y>>1;
+//        
+//        x = (x*x)%mod;
+//        }
+//        
+//        cout<<ans<<endl;
+//    }    
+
+
+//Recursive version of Fast Exponentiation
+ll ans = 1;
+int recur(int y,int x){
+    if(y == 0) return 1;
+    else{
+        ll curr = recur(y/2,x)%mod;
+        if(y%2 == 1) return ((curr%mod)*(curr%mod)*x)%mod;
+        else return ((curr%mod)*(curr%mod))%mod;
+        }
+    }
+void solve(){
+    ll y,x = 2;
+    cin>>y;
+    ans = (recur(y,x))%mod;
+    
+    cout<<ans<<endl;
+    }
+    
+int main(){
+ios::sync_with_stdio(false);
+cin.tie(0);    
+ll t = 1;
+//cin>>t;
+for(int i = 1;i<=t;i++){
+solve();
+}
+
+return 0;
+}
+
+
+
+
+
+
+//Most beautiful scenes are much higher to climb    
+//void sieve(){
+//    for(int i=2;i*i<=108;i++){
+//        if(sieve_arr[i] == 0){
+//            for(int j = i*i;j<=108;j+=i){
+//                sieve_arr[j] = 1;
+//                }
+//            }
+//        }
+//    }    
