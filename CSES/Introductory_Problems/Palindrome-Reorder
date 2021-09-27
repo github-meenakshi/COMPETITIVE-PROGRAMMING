@@ -1,0 +1,79 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <set>
+#include <map>
+#include <math.h>
+//#include <iomanip>
+//#include <string.h>
+//#include <queue>
+//#include <stack>
+//#include <numeric>
+//#include <unordered_map>
+//#include <unordered_set>
+#define ll long long int
+//#define ull unsigned long long int
+#define mod 1000000007
+//#define loop(n) for(int i = 1;i<=n;i++) cout<<seats[i]<<" ";
+//#define loopIN(n) for(int i = 0;i<n;i++) cin>>arr[i];
+//#define nextln cout<<"\n";
+using namespace std;
+ 
+//Coin Piles
+void solve(){
+    string s;
+    cin>>s;
+    ll len = s.length(),centre;
+    if(len%2 == 1) centre = len/2+1;
+    else centre = len/2;
+    map<char,int> mp;
+    vector<char> vec(len+1);
+    ll start = 1,end = len,count = 0;
+    for(int i = 0;i<len;i++){
+        char curr = s[i];
+        mp[curr]++;
+        }
+        
+        for(auto it : mp){
+            char currr = it.first;
+            ll times = it.second;
+            if(times%2 == 1) count++;
+            if(count>1){
+                cout<<"NO SOLUTION"<<endl;
+                return;
+                }
+                ll move1,move2;
+            if(times%2 == 1){
+                vec[centre] = currr;
+                }
+                    move1 = times/2;
+                    move2 = times/2;
+            while(move1!=0){
+                move1--;
+                vec[start] = currr;
+                start++;
+                }
+                while(move2!=0){
+                    move2--;
+                    vec[end] = currr;
+                    end--;
+                    }
+            }
+            
+            for(int i = 1;i<=len;i++) cout<<vec[i];
+            cout<<endl;
+            
+            return;
+    }
+    
+int main(){
+ios::sync_with_stdio(false);
+cin.tie(0);    
+ll t = 1;
+//cin>>t;
+for(int i = 1;i<=t;i++){
+solve();
+}
+ 
+return 0;
+}
