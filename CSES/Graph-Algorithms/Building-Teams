@@ -1,0 +1,59 @@
+vector<int> visited(100010,-1);
+vector<int> list[100010];
+bool bfs(int node){
+    visited[node] = 1;
+    queue<int> q;
+    q.push(node);
+    
+    while(!q.empty()){
+        int par = q.front();
+        q.pop();
+        
+        for(int i = 0;i<list[par].size();i++){
+            int curr = list[par][i];
+            if(visited[curr] == -1){
+                (visited[par] == 1) ? visited[curr] = 2 : visited[curr] = 1;
+                q.push(curr);
+                }
+                else if(visited[curr] == visited[par]){
+                    return false;
+                    }
+            }
+        }
+        
+        return true;
+    }
+
+bool bipartite(int n){
+    
+    for(int i = 0;i<n;i++){
+        if(visited[i] == -1){
+            if(bfs(i) == false) return false;
+            }
+        }
+        
+        return true;
+    }
+    
+int main(){
+    int n,m;
+    cin>>n>>m;
+    
+    for(int i = 0;i<m;i++){
+        int u,v;
+        cin>>u>>v;
+        u--;
+        v--;
+        list[u].push_back(v);
+        list[v].push_back(u);
+        }
+        
+        bool ans = bipartite(n);
+        if(ans == false) cout<<"IMPOSSIBLE"<<endl;
+        else{
+            for(int i = 0;i<n;i++) cout<<visited[i]<<" ";
+            cout<<endl;
+            }
+        
+        return 0;
+    }
